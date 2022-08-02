@@ -1,9 +1,6 @@
 import streamlit as st
-import streamlit_wordcloud as wordcloud
 import json
 import pandas as pd
-from rapidfuzz import process, fuzz
-import plotly.graph_objects as go
 st.set_page_config(layout="wide")
 
 @st.cache(allow_output_mutation=True)
