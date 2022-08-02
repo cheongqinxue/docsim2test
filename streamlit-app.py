@@ -1,12 +1,13 @@
 import streamlit as st
 import json
 import pandas as pd
+import s3fs
+FS = s3fs.S3FileSystem(anon=False, key=st.secrets['AWS_ACCESS_KEY_ID'], secret=st.secrets['AWS_SECRET_ACCESS_KEY'])
 st.set_page_config(layout="wide")
 
 # @st.cache(allow_output_mutation=True)
 def load(f1, f2):
-    import s3fs
-    FS = s3fs.S3FileSystem(anon=False)
+    
 
     with FS.open(f1) as f:
         cluster_data = json.loads(f.read())
