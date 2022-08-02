@@ -3,7 +3,7 @@ import json
 import pandas as pd
 st.set_page_config(layout="wide")
 
-@st.cache(allow_output_mutation=True)
+# @st.cache(allow_output_mutation=True)
 def load(f1, f2):
     import s3fs
     FS = s3fs.S3FileSystem(anon=False)
