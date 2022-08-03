@@ -59,5 +59,5 @@ def main():
         st.subheader('Displaying members of clusters detected by Version 1')
         st.table(df[df.similar_group_id==sim].head(300))
 
-if __name__=='__main__':
+if __name__=='__main__': 
     main()
