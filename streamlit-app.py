@@ -46,7 +46,7 @@ def main():
 
     if display=='V2 clusters':
         st.subheader('Displaying members and neighbors of clusters detected by Version 2')
-        st.barchart(v2_counts.sort_values(by='count').head(20)
+        st.barchart(v2_counts.sort_values(by='count').head(20))
         st.caption('Cluster members')
         st.table(pd.DataFrame(cluster_data[cluster]['members'])[['title','content']])
         st.caption('Cluster neighbours')
