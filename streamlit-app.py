@@ -53,7 +53,7 @@ def main():
         st.caption('Cluster neighbours')
         st.table(pd.DataFrame(cluster_data[cluster]['neighbours'])[['title','content']])
     else:
-        st.bar_chart(v1_counts)
+        st.bar_chart(v1_counts.sort_values(ascending=False).head(20))
         st.subheader('Displaying members of clusters detected by Version 1')
         st.table(df[df.similar_group_id==sim].head(300))
 
