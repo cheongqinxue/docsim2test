@@ -27,7 +27,9 @@ def load(f1, f2):
     return cluster_data, df, sims, df_.similar_group_id.value_counts(), pd.DataFrame(v2count).set_index('cluster')
 
 def main():
-    cluster_data, df, sims, v1_counts, v2_counts = load(st.secrets['CLUSTER'], st.secrets['ALL'])
+    __cluster__ = str(st.secrets['CLUSTER'])
+    __all__ = str(st.secrets['ALL'])
+    cluster_data, df, sims, v1_counts, v2_counts = load(__cluster__, __all__)
     with st.sidebar:
         display = st.selectbox(
         'Display mode',
