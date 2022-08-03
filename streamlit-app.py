@@ -15,7 +15,7 @@ def load(f1, f2):
         df = pd.read_json(f, lines=True)
     
     v2count = []
-    for i,c in cluster_data:
+    for i,c in enumerate(cluster_data):
         v2count.append({
             'cluster':i,
             'count':len(c['members'])
