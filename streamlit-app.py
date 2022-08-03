@@ -7,7 +7,7 @@ import s3fs
 FS = s3fs.S3FileSystem(anon=False, key=st.secrets['AWS_ACCESS_KEY_ID'], secret=st.secrets['AWS_SECRET_ACCESS_KEY'])
 st.set_page_config(layout="wide")
 
-# @st.cache(allow_output_mutation=True)
+@st.cache
 def load(f1, f2):
     
     with FS.open(f1) as f:
@@ -27,13 +27,16 @@ def main():
         display = st.selectbox(
         'Display mode',
         ('V2 clusters', 'V1 clusters'))
-
-        cluster = int(st.number_input(label='[V2 view only] Cluster number to display', min_value=0, max_value=len(cluster_data)))
-
-        sim = st.selectbox(
-            '[V1 view only] Choose similar_group_id to view items grouped by doc sim v1',
-            sims
-        )
+        
+        if display == 'V2 clusters':
+            cluster = int(st.number_input(label='[V2 view only] Cluster number to display', min_value=0, max_value=len(cluster_data)))
+            sim = None
+        else:
+            sim = st.selectbox(
+                '[V1 view only] Choose similar_group_id to view items grouped by doc sim v1',
+                sims
+            )
+            cluster = None
 
     if display=='V2 clusters':
         st.caption('Cluster members')
