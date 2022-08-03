@@ -25,7 +25,7 @@ def load(f1, f2):
     sims = df_[df_.similar_group_id.str.isnumeric()].similar_group_id.unique()
     count = df_.similar_group_id.value_counts().to_dict()
     sims = [s for s in sims if count[s]>1]
-    return cluster_data, df, sims, df_.similar_group_id.value_counts(), pd.DataFrame(v2count)
+    return cluster_data, df, sims, df_.similar_group_id.value_counts(), pd.DataFrame(v2count).set_index('cluster')
 
 def main():
     cluster_data, df, sims, v1_counts, v2_counts = load(st.secrets['CLUSTER'], st.secrets['ALL'])
