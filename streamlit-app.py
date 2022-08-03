@@ -46,12 +46,14 @@ def main():
 
     if display=='V2 clusters':
         st.subheader('Displaying members and neighbors of clusters detected by Version 2')
+        st.caption('20 Largest clusters')
         st.bar_chart(v2_counts.sort_values(by='count', ascending=False).head(20))
         st.caption('Cluster members')
         st.table(pd.DataFrame(cluster_data[cluster]['members'])[['title','content']])
         st.caption('Cluster neighbours')
         st.table(pd.DataFrame(cluster_data[cluster]['neighbours'])[['title','content']])
     else:
+        st.bar_chart(v1_counts)
         st.subheader('Displaying members of clusters detected by Version 1')
         st.table(df[df.similar_group_id==sim].head(300))
 
