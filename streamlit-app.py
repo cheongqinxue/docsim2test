@@ -6,10 +6,14 @@ import s3fs
 FS = s3fs.S3FileSystem(anon=False, key=st.secrets['AWS_ACCESS_KEY_ID'], secret=st.secrets['AWS_SECRET_ACCESS_KEY'])
 st.set_page_config(layout="wide")
 
-@st.cache(hash_funcs={json.loads: my_hash_func})
-def load(f1, f2):
+def loadjson(f1):
     with FS.open(f1) as f:
         cluster_data = json.loads(f.read())
+    return cluster_data
+
+@st.cache(hash_funcs={json.loads: loadjson})
+def load(f1, f2):
+    cluster_data = loadjson(f1)
     with FS.open(f2) as f:
         df = pd.read_json(f, lines=True)
     
